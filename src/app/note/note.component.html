@@ -1,0 +1,74 @@
+<div class="projects p-20 bg-white rad-10 m-20">
+  <h2 class="mt-0 mb-20">liste Matiére</h2>
+
+  <!-- Zone de recherche -->
+  <input
+    type="text"
+    placeholder="Rechercher par nom..."
+    [(ngModel)]="searchTerm"
+    (input)="filterProjects()"
+    class="search-input"
+  />
+  
+  <button class="d-flex align-center fs-14 m-15 c-black rad-6 border-eee p-10" (click)="openModal()">
+    <i class="fa-solid fa-plus"></i> Ajouter
+  </button>
+
+
+  <!-- Tableau -->
+  <div class="responsive-table">
+    <table class="fs-15 w-full">
+      <thead>
+        <tr>
+          <td>Code</td>
+          <td>Matiere</td>
+          <td>Coefficient</td>
+          <td>Note</td>
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of filteredProjects | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+          <td>{{ project.code }}</td>
+          <td>{{ project.Matiere }}</td>
+          <td>{{ project.Coefficient }}</td>
+          <td>{{ project.Note }}</td>
+         <td><a href="#" class="text-blue"><i class="fa fa-edit"></i></a> </td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination Controls -->
+  <pagination-controls
+    (pageChange)="currentPage = $event"
+    [responsive]="true"
+    previousLabel="Précédent"
+    nextLabel="Suivant"
+  >
+  </pagination-controls>
+</div>
+
+<!-- Modale -->
+<div class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h3>Ajouter un nouveau projet</h3>
+    <form (submit)="addProject()">
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" [(ngModel)]="newProject.code" name="code" required />
+
+      <label for="precode">matiere :</label>
+      <input type="text" id="matiere" [(ngModel)]="newProject.matiere" name="matiere" required />
+
+      <label for="dateNaissance">Date de naissance :</label>
+      <input type="date" id="dateNaissance" [(ngModel)]="newProject.dateNaissance" name="dateNaissance" required />
+
+      <label for="telephone">Num Téléphone :</label>
+      <input type="text" id="telephone" [(ngModel)]="newProject.telephone" name="telephone" required />
+
+      <button type="submit" class="save-btn">Ajouter</button>
+    </form>
+  </div>
+</div>

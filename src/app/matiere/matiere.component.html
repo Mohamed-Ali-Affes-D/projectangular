@@ -1,0 +1,78 @@
+<div class="projects p-20 bg-white rad-10 m-20">
+    <h2 class="mt-0 mb-20">liste Matiére</h2>
+  
+    <!-- Zone de recherche -->
+    <input
+      type="text"
+      placeholder="Rechercher par Désignation..."
+      [(ngModel)]="searchTerm"
+      (input)="filterMatiere()"
+      class="search-input"
+    />
+    
+    <button class="d-flex align-center fs-14 m-15 c-black rad-6 border-eee p-10" (click)="openModal()">
+      <i class="fa-solid fa-plus"></i> Ajouter
+    </button>
+  
+  
+    <!-- Tableau -->
+    <div class="responsive-table">
+      <table class="fs-15 w-full">
+        <thead>
+          <tr>
+            <td>Code</td>
+            <td>Désignation Matiere</td>
+            <td>Coefficient</td>
+            <td>Note</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let matiere of filterMatieres | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage }">
+            <td>{{ matiere.code }}</td>
+            <td>{{ matiere.designation }}</td>
+            <td>{{ matiere.Coefficient }}</td>
+            <td>{{ matiere.Note }}</td>
+            <td>
+              <a href="#" class="text-vert m-20"><i class="fa fa-edit"></i></a>
+  
+              <a href="#" class="text-red"><i class="fa fa-trash"></i></a>
+          </td>          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Pagination Controls -->
+    <pagination-controls
+      (pageChange)="currentPage = $event"
+      [responsive]="true"
+      previousLabel="Précédent"
+      nextLabel="Suivant"
+    >
+    </pagination-controls>
+  </div>
+  
+  <!-- Modale -->
+  <div class="modal" [class.show]="isModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h3>Ajouter un nouveau matiere</h3>
+      <form (submit)="addMatiere()">
+        <label for="code">code :</label>
+        <input type="text" id="code" [(ngModel)]="newMatiere.code" name="code" required />
+  
+        <label for="designation">designation :</label>
+        <input type="text" id="designation" [(ngModel)]="newMatiere.designation" name="designation" required />
+  
+        <label for="Coefficient">Date de naissance :</label>
+        <input type="number" id="Coefficient" [(ngModel)]="newMatiere.Coefficient" name="Coefficient" required />
+  
+        <label for="Note">Note :</label>
+        <input type="text" id="Note" [(ngModel)]="newMatiere.Note" name="Note" required />
+  
+        <button type="submit" class="save-btn">Ajouter</button>
+      </form>
+    </div>
+  </div>
+  

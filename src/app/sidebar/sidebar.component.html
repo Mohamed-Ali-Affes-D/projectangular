@@ -1,0 +1,52 @@
+<div class="page d-flex">
+    <div class="sidebar bg-white p-20 p-relative">
+        <h3 class="p-relative txt-c mt-0">IPSAS</h3>
+        <ul>
+            <li>
+                <a class="d-flex align-center fs-14 c-black rad-6 p-10" routerLink="/dashboard"
+                    routerLinkActive="active">
+
+
+                    <i class="fa-regular fa-chart-bar fa-fw"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/etudiant" routerLinkActive="active"
+                    class="d-flex align-center fs-14 c-black rad-6 p-10">
+                    <i class="fa-regular fa-user fa-fw"></i>
+                    <span>Gestion Etudiant</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/matiere" routerLinkActive="active" class="d-flex align-center fs-14 c-black rad-6 p-10">
+                    
+                    <i class="fa-regular fa-bookmark"></i>
+                    <span>Gestion Matiere</span>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/note" routerLinkActive="active" class="d-flex align-center fs-14 c-black rad-6 p-10">
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  <span>Gestion Note</span>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="content w-full">
+        <!-- Start Head -->
+        <div class="head bg-white p-15 between-flex">
+            <div class="search p-relative">
+                <input class="p-10" type="search" placeholder="Type A Keyword" />
+            </div>
+
+        </div>
+        <!-- End Head -->
+
+        <router-outlet></router-outlet> <!-- This is where the routed content will appear -->
+
+
+    </div>
+</div>
